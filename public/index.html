@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mind Map App - Visualize Your Ideas</title>
+    <meta name="description" content="Create, organize, and share mind maps for brainstorming, project planning, and knowledge visualization.">
+    <meta name="keywords" content="mind map, brainstorming, visualization, planning, collaboration">
+    <meta name="author" content="Mind Map App">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://mindmap-app.vercel.app/">
+    <meta property="og:title" content="Mind Map App - Visualize Your Ideas">
+    <meta property="og:description" content="Create, organize, and share mind maps for brainstorming, project planning, and knowledge visualization.">
+    <meta property="og:image" content="/og-image.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://mindmap-app.vercel.app/">
+    <meta property="twitter:title" content="Mind Map App - Visualize Your Ideas">
+    <meta property="twitter:description" content="Create, organize, and share mind maps for brainstorming, project planning, and knowledge visualization.">
+    <meta property="twitter:image" content="/og-image.png">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    
+    <!-- PWA Support -->
+    <meta name="theme-color" content="#3b82f6">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Mind Map App">
+</head>
+<body class="bg-secondary-50 text-secondary-900 font-sans">
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="fixed inset-0 bg-white z-50 flex items-center justify-center">
+        <div class="text-center">
+            <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600 mx-auto mb-4"></div>
+            <p class="text-secondary-600">Loading Mind Map App...</p>
+        </div>
+    </div>
+
+    <!-- Main App Container -->
+    <div id="app" class="hidden h-screen flex flex-col">
+        <!-- Header -->
+        <header class="bg-white border-b border-secondary-200 px-4 py-3 flex items-center justify-between">
+            <div class="flex items-center space-x-4">
+                <h1 class="text-xl font-bold text-secondary-900">Mind Map App</h1>
+                <div class="hidden md:flex items-center space-x-2 text-sm text-secondary-600">
+                    <span id="node-count">0 nodes</span>
+                    <span>•</span>
+                    <span id="connection-count">0 connections</span>
+                </div>
+            </div>
+            
+            <!-- Desktop Toolbar -->
+            <div class="hidden md:flex items-center space-x-2">
+                <button id="new-mindmap-btn" class="btn btn-primary btn-sm">
+                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                    </svg>
+                    New
+                </button>
+                <button id="save-btn" class="btn btn-secondary btn-sm">
+                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3-3m0 0l-3 3m3-3v12"></path>
+                    </svg>
+                    Save
+                </button>
+                <button id="load-btn" class="btn btn-secondary btn-sm">
+                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10"></path>
+                    </svg>
+                    Load
+                </button>
+                <button id="export-btn" class="btn btn-secondary btn-sm">
+                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                    </svg>
+                    Export
+                </button>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-btn" class="md:hidden btn btn-ghost btn-sm">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </header>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="md:hidden hidden bg-white border-b border-secondary-200 p-4">
+            <div class="grid grid-cols-2 gap-2">
+                <button id="mobile-new-btn" class="btn btn-primary btn-sm">
+                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                    </svg>
+                    New
+                </button>
+                <button id="mobile-save-btn" class="btn btn-secondary btn-sm">
+                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3-3m0 0l-3 3m3-3v12"></path>
+                    </svg>
+                    Save
+                </button>
+                <button id="mobile-load-btn" class="btn btn-secondary btn-sm">
+                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10"></path>
+                    </svg>
+                    Load
+                </button>
+                <button id="mobile-export-btn" class="btn btn-secondary btn-sm">
+                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                    </svg>
+                    Export
+                </button>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <main class="flex-1 relative overflow-hidden">
+            <!-- Canvas Container -->
+            <div id="canvas-container" class="absolute inset-0 bg-secondary-50">
+                <canvas id="mindmap-canvas" class="absolute inset-0 cursor-grab"></canvas>
+                
+                <!-- Context Menu -->
+                <div id="context-menu" class="hidden absolute bg-white border border-secondary-200 rounded-lg shadow-lg py-2 z-50 min-w-[160px]">
+                    <button class="context-menu-item w-full text-left px-4 py-2 text-sm hover:bg-secondary-100" data-action="edit">
+                        <svg class="w-4 h-4 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+                        </svg>
+                        Edit
+                    </button>
+                    <button class="context-menu-item w-full text-left px-4 py-2 text-sm hover:bg-secondary-100" data-action="delete">
+                        <svg class="w-4 h-4 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                        </svg>
+                        Delete
+                    </button>
+                    <button class="context-menu-item w-full text-left px-4 py-2 text-sm hover:bg-secondary-100" data-action="connect">
+                        <svg class="w-4 h-4 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path>
+                        </svg>
+                        Connect
+                    </button>
+                </div>
+            </div>
+
+            <!-- Properties Panel -->
+            <div id="properties-panel" class="hidden absolute right-0 top-0 h-full w-80 bg-white border-l border-secondary-200 shadow-lg z-40">
+                <div class="p-4 border-b border-secondary-200">
+                    <h3 class="text-lg font-semibold text-secondary-900">Properties</h3>
+                </div>
+                <div class="p-4 space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium text-secondary-700 mb-2">Text</label>
+                        <input id="node-text-input" type="text" class="input" placeholder="Enter node text">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-secondary-700 mb-2">Background Color</label>
+                        <input id="node-bg-color" type="color" class="w-full h-10 rounded border border-secondary-300" value="#3b82f6">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-secondary-700 mb-2">Text Color</label>
+                        <input id="node-text-color" type="color" class="w-full h-10 rounded border border-secondary-300" value="#ffffff">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-secondary-700 mb-2">Shape</label>
+                        <select id="node-shape" class="input">
+                            <option value="rectangle">Rectangle</option>
+                            <option value="circle">Circle</option>
+                            <option value="diamond">Diamond</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Modals -->
+        <!-- New Mind Map Modal -->
+        <div id="new-mindmap-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+            <div class="bg-white rounded-lg shadow-xl max-w-md w-full">
+                <div class="p-6">
+                    <h3 class="text-lg font-semibold text-secondary-900 mb-4">Create New Mind Map</h3>
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-secondary-700 mb-2">Title</label>
+                            <input id="new-mindmap-title" type="text" class="input" placeholder="Enter mind map title" required>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-secondary-700 mb-2">Description (Optional)</label>
+                            <textarea id="new-mindmap-description" class="input" rows="3" placeholder="Enter description"></textarea>
+                        </div>
+                    </div>
+                    <div class="flex justify-end space-x-2 mt-6">
+                        <button id="cancel-new-mindmap" class="btn btn-secondary btn-sm">Cancel</button>
+                        <button id="create-mindmap" class="btn btn-primary btn-sm">Create</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Load Mind Map Modal -->
+        <div id="load-mindmap-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+            <div class="bg-white rounded-lg shadow-xl max-w-2xl w-full">
+                <div class="p-6">
+                    <h3 class="text-lg font-semibold text-secondary-900 mb-4">Load Mind Map</h3>
+                    <div id="mindmap-list" class="space-y-2 max-h-96 overflow-y-auto">
+                        <!-- Mind maps will be loaded here -->
+                    </div>
+                    <div class="flex justify-end space-x-2 mt-6">
+                        <button id="cancel-load-mindmap" class="btn btn-secondary btn-sm">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Toast Notifications -->
+        <div id="toast-container" class="fixed top-4 right-4 z-50 space-y-2"></div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="/js/mindmap.js"></script>
+</body>
+</html>

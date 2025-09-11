@@ -1,0 +1,33 @@
+# Node
+node_modules/
+.npmrc
+npm-debug.log*
+
+# Builds
+/dist/
+/public/css/style.css
+
+# Env
+.env
+.env.local
+.env.*.local
+
+# Editor
+.vscode/
+.idea/
+.DS_Store
+*.swp
+
+# Logs
+logs
+*.log
+*.log.*
+pids
+*.pid
+*.seed
+
+# Coverage
+coverage
+
+# OS
+Thumbs.db
