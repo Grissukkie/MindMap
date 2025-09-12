@@ -2,16 +2,16 @@
   "name": "mindmap-app",
   "version": "1.0.0",
   "description": "A comprehensive mind mapping web application",
-  "main": "api/server.ts",
-  "scripts": {
-    "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\"",
-    "dev:server": "nodemon api/server.ts",
-    "dev:client": "tailwindcss -i ./src/input.css -o ./public/css/style.css --watch",
-    "build": "npm run build:css && tsc",
-    "build:css": "tailwindcss -i ./src/input.css -o ./public/css/style.css --minify",
-    "start": "node dist/api/server.js",
-    "type-check": "tsc --noEmit"
-  },
+"main": "src/api/server.ts",
+"scripts": {
+  "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\"",
+  "dev:server": "nodemon src/api/server.ts",
+  "dev:client": "tailwindcss -i ./src/input.css -o ./public/css/style.css --watch",
+  "build": "npm run build:css && tsc",
+  "build:css": "tailwindcss -i ./src/input.css -o ./public/css/style.css --minify",
+  "start": "node dist/api/server.js",
+  "type-check": "tsc --noEmit"
+},
   "dependencies": {
     "@types/bcryptjs": "^2.4.6",
     "@types/jsonwebtoken": "^9.0.10",
@@ -28,9 +28,11 @@
     "@types/cors": "^2.8.13",
     "@types/express": "^4.17.17",
     "@types/node": "^20.5.0",
+    "autoprefixer": "^10.4.21",
     "concurrently": "^8.2.0",
     "nodemon": "^3.0.1",
-    "tailwindcss": "^3.3.3",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^3.4.17",
     "ts-node": "^10.9.1",
     "typescript": "^5.1.6"
   },
