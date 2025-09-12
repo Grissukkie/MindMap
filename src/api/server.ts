@@ -70,7 +70,7 @@ app.use(express.static('public'));
 
 // Catch-all handler for SPA
 app.get('*', (req, res) => {
-  res.sendFile('index.html', { root: 'public' });
+  res.sendFile('home.html', { root: 'public' });
 });
 
 // Error handling middleware
