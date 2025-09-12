@@ -76,6 +76,7 @@ class MindMapApp {
         document.getElementById('save-btn').addEventListener('click', () => this.saveMindMap());
         document.getElementById('load-btn').addEventListener('click', () => this.showLoadMindMapModal());
         document.getElementById('export-btn').addEventListener('click', () => this.exportMindMap());
+        document.getElementById('logout-btn').addEventListener('click', () => this.logout());
         
         // Mobile buttons
         document.getElementById('mobile-menu-btn').addEventListener('click', () => this.toggleMobileMenu());
@@ -110,6 +111,18 @@ class MindMapApp {
 
     setupUI() {
         this.updateStats();
+        this.updateUserInfo();
+    }
+
+    updateUserInfo() {
+        const user = window.authService.getCurrentUser();
+        if (user) {
+            document.getElementById('user-name').textContent = `Welcome, ${user.name}!`;
+        }
+    }
+
+    logout() {
+        window.authService.logout();
     }
 
     handleMouseDown(e) {
@@ -609,7 +622,8 @@ class MindMapApp {
 
     async loadMindMapsList() {
         try {
-            const response = await fetch('/api/mindmaps');
+            const headers = window.authService.getAuthHeaders();
+            const response = await fetch('/api/mindmaps', { headers });
             const data = await response.json();
             
             const listContainer = document.getElementById('mindmap-list');
@@ -674,13 +688,13 @@ class MindMapApp {
                 connections: Array.from(this.connections.values())
             };
             
+            const headers = window.authService.getAuthHeaders();
+            
             if (this.currentMindMapId) {
                 // Update existing mind map
                 const response = await fetch(`/api/mindmaps/${this.currentMindMapId}`, {
                     method: 'PUT',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
+                    headers,
                     body: JSON.stringify(mindmapData)
                 });
                 
@@ -694,9 +708,7 @@ class MindMapApp {
                 // Create new mind map
                 const response = await fetch('/api/mindmaps', {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
+                    headers,
                     body: JSON.stringify(mindmapData)
                 });
                 

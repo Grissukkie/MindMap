@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Cuenta - Mind Map App</title>
+    <meta name="description" content="Crea tu cuenta de Mind Map App para comenzar a visualizar tus ideas.">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="/css/signup.css">
+</head>
+<body>
+    <!-- Fondo animado -->
+    <div class="animated-bg">
+        <div class="floating-shape shape-1"></div>
+        <div class="floating-shape shape-2"></div>
+        <div class="floating-shape shape-3"></div>
+        <div class="floating-shape shape-4"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-content">
+                <div class="nav-brand">
+                    <a href="/home.html" class="brand-link">
+                        <svg class="brand-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <circle cx="12" cy="12" r="3"/>
+                            <path d="M12 1v6m0 6v6"/>
+                            <path d="m21 12-6 0m-6 0-6 0"/>
+                            <path d="m16.24 7.76-4.24 4.24m0 0L7.76 16.24m4.24-4.24l4.24 4.24M7.76 7.76l4.24 4.24"/>
+                        </svg>
+                        Mind Map App
+                    </a>
+                </div>
+                <div class="nav-actions">
+                    <a href="/login.html" class="btn-secondary">Iniciar Sesión</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="signup-container">
+            <!-- Left Panel - Form -->
+            <div class="form-panel">
+                <div class="form-container">
+                    <div class="form-header">
+                        <h2 class="form-title">Crear Cuenta</h2>
+                        <p class="form-subtitle">
+                            ¿Ya tienes una cuenta? 
+                            <a href="/login.html" class="login-link">Inicia sesión aquí</a>
+                        </p>
+                    </div>
+                    
+                    <form id="signup-form" class="signup-form">
+                        <div class="form-row">
+                            <div class="input-group">
+                                <label for="firstName" class="input-label">
+                                    Nombre
+                                </label>
+                                <div class="input-wrapper">
+                                    <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                                        <circle cx="12" cy="7" r="4"/>
+                                    </svg>
+                                    <input
+                                        id="firstName"
+                                        name="firstName"
+                                        type="text"
+                                        required
+                                        class="form-input"
+                                        placeholder="Nombre"
+                                        autocomplete="given-name"
+                                    >
+                                </div>
+                            </div>
+
+                            <div class="input-group">
+                                <label for="lastName" class="input-label">
+                                    Apellido
+                                </label>
+                                <div class="input-wrapper">
+                                    <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                                        <circle cx="12" cy="7" r="4"/>
+                                    </svg>
+                                    <input
+                                        id="lastName"
+                                        name="lastName"
+                                        type="text"
+                                        required
+                                        class="form-input"
+                                        placeholder="Apellido"
+                                        autocomplete="family-name"
+                                    >
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="input-group">
+                            <label for="email" class="input-label">
+                                Correo Electrónico
+                            </label>
+                            <div class="input-wrapper">
+                                <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                                    <polyline points="22,6 12,13 2,6"/>
+                                </svg>
+                                <input
+                                    id="email"
+                                    name="email"
+                                    type="email"
+                                    required
+                                    class="form-input"
+                                    placeholder="tu@ejemplo.com"
+                                    autocomplete="email"
+                                >
+                            </div>
+                            <div class="input-feedback" id="email-feedback"></div>
+                        </div>
+                        
+                        <div class="input-group">
+                            <label for="password" class="input-label">
+                                Contraseña
+                            </label>
+                            <div class="input-wrapper">
+                                <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                                    <circle cx="12" cy="16" r="1"/>
+                                    <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                                </svg>
+                                <input
+                                    id="password"
+                                    name="password"
+                                    type="password"
+                                    required
+                                    class="form-input"
+                                    placeholder="••••••••"
+                                    autocomplete="new-password"
+                                    minlength="8"
+                                >
+                                <button type="button" class="password-toggle" id="password-toggle">
+                                    <svg class="eye-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                                        <circle cx="12" cy="12" r="3"/>
+                                    </svg>
+                                </button>
+                            </div>
+                            
+                            <!-- Password Strength Indicator -->
+                            <div class="password-strength">
+                                <div class="strength-bar">
+                                    <div class="strength-progress" id="strength-progress"></div>
+                                </div>
+                                <div class="strength-text" id="strength-text">Muy débil</div>
+                            </div>
+                            
+                            <!-- Password Requirements -->
+                            <div class="password-requirements" id="password-requirements">
+                                <div class="requirement" id="req-length">
+                                    <svg class="req-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                        <circle cx="12" cy="12" r="10"/>
+                                        <path d="m9 12 2 2 4-4"/>
+                                    </svg>
+                                    Al menos 8 caracteres
+                                </div>
+                                <div class="requirement" id="req-uppercase">
+                                    <svg class="req-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                        <circle cx="12" cy="12" r="10"/>
+                                        <path d="m9 12 2 2 4-4"/>
+                                    </svg>
+                                    Al menos una mayúscula
+                                </div>
+                                <div class="requirement" id="req-number">
+                                    <svg class="req-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                        <circle cx="12" cy="12" r="10"/>
+                                        <path d="m9 12 2 2 4-4"/>
+                                    </svg>
+                                    Al menos un número
+                                </div>
+                                <div class="requirement" id="req-special">
+                                    <svg class="req-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                        <circle cx="12" cy="12" r="10"/>
+                                        <path d="m9 12 2 2 4-4"/>
+                                    </svg>
+                                    Al menos un carácter especial
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="input-group">
+                            <label for="confirmPassword" class="input-label">
+                                Confirmar Contraseña
+                            </label>
+                            <div class="input-wrapper">
+                                <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                                    <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                                    <path d="m9 16 2 2 4-4"/>
+                                </svg>
+                                <input
+                                    id="confirmPassword"
+                                    name="confirmPassword"
+                                    type="password"
+                                    required
+                                    class="form-input"
+                                    placeholder="••••••••"
+                                    autocomplete="new-password"
+                                >
+                            </div>
+                            <div class="input-feedback" id="confirm-feedback"></div>
+                        </div>
+
+                        <div class="terms-section">
+                            <div class="checkbox-group">
+                                <input
+                                    id="terms"
+                                    name="terms"
+                                    type="checkbox"
+                                    required
+                                    class="checkbox"
+                                >
+                                <label for="terms" class="checkbox-label">
+                                    Acepto los 
+                                    <a href="/terms.html" target="_blank" class="terms-link">Términos de Servicio</a>
+                                     y la 
+                                    <a href="/privacy.html" target="_blank" class="terms-link">Política de Privacidad</a>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="submit" class="btn-primary" id="signup-btn">
+                                <span id="signup-btn-text">Crear Cuenta</span>
+                                <div id="signup-spinner" class="spinner hidden">
+                                    <div class="spinner-circle"></div>
+                                </div>
+                            </button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+
+            <!-- Right Panel - Info -->
+            <div class="info-panel">
+                <div class="info-content">
+                    <h1 class="info-title">Únete a nosotros</h1>
+                    <p class="info-description">
+                        Comienza tu viaje creativo con Mind Map App. Organiza ideas, colabora con tu equipo y transforma tus conceptos en realidad.
+                    </p>
+                    
+                    <div class="benefits-list">
+                        <div class="benefit-item">
+                            <div class="benefit-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                    <path d="M9 12l2 2 4-4"/>
+                                    <path d="M21 12c-1 0-3-1-3-3s2-3 3-3 3 1 3 3-2 3-3 3"/>
+                                    <path d="M3 12c1 0 3-1 3-3s-2-3-3-3-3 1-3 3 2 3 3 3"/>
+                                    <path d="M12 3c0 1-1 3-3 3s-3-2-3-3 1-3 3-3 3 2 3 3"/>
+                                    <path d="M12 21c0-1 1-3 3-3s3 2 3 3-1 3-3 3-3-2-3-3"/>
+                                </svg>
+                            </div>
+                            <div class="benefit-text">
+                                <h3>Herramientas Intuitivas</h3>
+                                <p>Crea mapas mentales profesionales con nuestra interfaz fácil de usar</p>
+                            </div>
+                        </div>
+                        
+                        <div class="benefit-item">
+                            <div class="benefit-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                                    <circle cx="9" cy="7" r="4"/>
+                                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                                    <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                                </svg>
+                            </div>
+                            <div class="benefit-text">
+                                <h3>Colaboración Sin Límites</h3>
+                                <p>Trabaja en equipo en tiempo real y comparte ideas instantáneamente</p>
+                            </div>
+                        </div>
+                        
+                        <div class="benefit-item">
+                            <div class="benefit-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                                    <rect x="9" y="9" width="6" height="6"/>
+                                    <path d="M9 1v6"/>
+                                    <path d="M15 1v6"/>
+                                    <path d="M9 17v6"/>
+                                    <path d="M15 17v6"/>
+                                    <path d="M1 9h6"/>
+                                    <path d="M17 9h6"/>
+                                    <path d="M1 15h6"/>
+                                    <path d="M17 15h6"/>
+                                </svg>
+                            </div>
+                            <div class="benefit-text">
+                                <h3>Plantillas Avanzadas</h3>
+                                <p>Accede a cientos de plantillas profesionales para cualquier proyecto</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Toast Notifications -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <!-- Scripts -->
+    <script src="/js/auth.js"></script>
+    <script src="/js/signup.js"></script>
+</body>
+</html>

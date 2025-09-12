@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar Sesión - Mind Map App</title>
+    <meta name="description" content="Inicia sesión en tu cuenta de Mind Map App para acceder a tus mapas mentales.">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="/css/login.css">
+</head>
+<body>
+    <!-- Fondo animado -->
+    <div class="animated-bg">
+        <div class="floating-shape shape-1"></div>
+        <div class="floating-shape shape-2"></div>
+        <div class="floating-shape shape-3"></div>
+        <div class="floating-shape shape-4"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-content">
+                <div class="nav-brand">
+                    <a href="/home.html" class="brand-link">
+                        <svg class="brand-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <circle cx="12" cy="12" r="3"/>
+                            <path d="M12 1v6m0 6v6"/>
+                            <path d="m21 12-6 0m-6 0-6 0"/>
+                            <path d="m16.24 7.76-4.24 4.24m0 0L7.76 16.24m4.24-4.24l4.24 4.24M7.76 7.76l4.24 4.24"/>
+                        </svg>
+                        Mind Map App
+                    </a>
+                </div>
+                <div class="nav-actions">
+                    <a href="/signup.html" class="btn-secondary">Registrarse</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="login-container">
+            <!-- Left Panel - Info -->
+            <div class="info-panel">
+                <div class="info-content">
+                    <h1 class="info-title">Bienvenido de vuelta</h1>
+                    <p class="info-description">
+                        Organiza tus ideas, conecta conceptos y libera tu creatividad con nuestros mapas mentales interactivos.
+                    </p>
+                    
+                    <div class="features-list">
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                    <path d="M9 11H5a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2v-7a2 2 0 0 0-2-2z"/>
+                                    <path d="M21 11h-4a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2v-7a2 2 0 0 0-2-2z"/>
+                                    <path d="M9 11V9a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"/>
+                                </svg>
+                            </div>
+                            <span>Mapas mentales intuitivos</span>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                                    <circle cx="9" cy="7" r="4"/>
+                                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                                    <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                                </svg>
+                            </div>
+                            <span>Colaboración en tiempo real</span>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                                </svg>
+                            </div>
+                            <span>Plantillas profesionales</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Panel - Login Form -->
+            <div class="form-panel">
+                <div class="form-container">
+                    <div class="form-header">
+                        <h2 class="form-title">Iniciar Sesión</h2>
+                        <p class="form-subtitle">
+                            ¿No tienes cuenta? 
+                            <a href="/signup.html" class="signup-link">Regístrate aquí</a>
+                        </p>
+                    </div>
+                    
+                    <form id="login-form" class="login-form">
+                        <div class="input-group">
+                            <label for="email" class="input-label">
+                                Correo Electrónico
+                            </label>
+                            <div class="input-wrapper">
+                                <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                                    <polyline points="22,6 12,13 2,6"/>
+                                </svg>
+                                <input
+                                    id="email"
+                                    name="email"
+                                    type="email"
+                                    required
+                                    class="form-input"
+                                    placeholder="tu@ejemplo.com"
+                                    autocomplete="email"
+                                >
+                            </div>
+                        </div>
+                        
+                        <div class="input-group">
+                            <label for="password" class="input-label">
+                                Contraseña
+                            </label>
+                            <div class="input-wrapper">
+                                <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                                    <circle cx="12" cy="16" r="1"/>
+                                    <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                                </svg>
+                                <input
+                                    id="password"
+                                    name="password"
+                                    type="password"
+                                    required
+                                    class="form-input"
+                                    placeholder="••••••••"
+                                    autocomplete="current-password"
+                                >
+                                <button type="button" class="password-toggle" id="password-toggle">
+                                    <svg class="eye-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                                        <circle cx="12" cy="12" r="3"/>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="form-options">
+                            <div class="checkbox-group">
+                                <input
+                                    id="remember-me"
+                                    name="remember-me"
+                                    type="checkbox"
+                                    class="checkbox"
+                                >
+                                <label for="remember-me" class="checkbox-label">
+                                    Recordarme
+                                </label>
+                            </div>
+
+                            <div class="forgot-password">
+                                <a href="#" class="forgot-link">¿Olvidaste tu contraseña?</a>
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="submit" class="btn-primary" id="login-btn">
+                                <span id="login-btn-text">Iniciar Sesión</span>
+                                <div id="login-spinner" class="spinner hidden">
+                                    <div class="spinner-circle"></div>
+                                </div>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Toast Notifications -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <!-- Scripts -->
+    <script src="/js/auth.js"></script>
+    <script src="/js/login.js"></script>
+</body>
+</html>

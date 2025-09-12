@@ -4,7 +4,9 @@ import helmet from 'helmet';
 import rateLimit from 'express-rate-limit';
 import { corsMiddleware } from './middleware/cors';
 import { errorHandler, notFoundHandler } from './middleware/errorHandler';
+import { authenticateToken } from './middleware/auth';
 import mindmapRoutes from './routes/mindmaps';
+import authRoutes from './routes/auth';
 import connectDB from './database';
 
 const app = express();
@@ -60,7 +62,8 @@ app.get('/api/health', (req, res) => {
 });
 
 // API routes
-app.use('/api/mindmaps', mindmapRoutes);
+app.use('/api/auth', authRoutes);
+app.use('/api/mindmaps', authenticateToken, mindmapRoutes);
 
 // Serve static files
 app.use(express.static('public'));
