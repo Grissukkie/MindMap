@@ -1,163 +1,55 @@
-import { Router, Request, Response } from 'express';
-import { MindMapModel } from '../models/MindMap';
-import { asyncHandler } from '../middleware/errorHandler';
-import { ApiResponse, CreateMindMapRequest, UpdateMindMapRequest } from '../types';
+import { Router } from 'express';
+import MindMap from '../models/MindMap';
+
 
 const router = Router();
 
-// GET /api/mindmaps - Get all mind maps
-router.get('/', asyncHandler(async (req: Request, res: Response) => {
-  const mindmaps = await MindMapModel.find()
-    .sort({ updatedAt: -1 })
-    .limit(50);
 
-  const response: ApiResponse = {
-    success: true,
-    data: mindmaps,
-    message: 'Mind maps retrieved successfully'
-  };
+// Create new mindmap
+router.post('/', async (req, res) => {
+try {
+const { title, nodes } = req.body;
+const saved = await MindMap.create({ title, nodes });
+res.status(201).json(saved);
+} catch (err) {
+console.error(err);
+res.status(500).json({ error: 'Server error' });
+}
+});
 
-  res.json(response);
-}));
 
-// GET /api/mindmaps/:id - Get specific mind map
-router.get('/:id', asyncHandler(async (req: Request, res: Response) => {
-  const { id } = req.params;
+// Get all
+router.get('/', async (req, res) => {
+try {
+const maps = await MindMap.find().sort({ createdAt: -1 }).lean();
+res.json(maps);
+} catch (err) {
+res.status(500).json({ error: 'Server error' });
+}
+});
 
-  if (!id || id.length !== 24) {
-    return res.status(400).json({
-      success: false,
-      error: 'Invalid mind map ID',
-      message: 'Please provide a valid mind map ID'
-    });
-  }
 
-  const mindmap = await MindMapModel.findById(id);
+// Get one
+router.get('/:id', async (req, res) => {
+try {
+const map = await MindMap.findById(req.params.id).lean();
+if (!map) return res.status(404).json({ error: 'Not found' });
+res.json(map);
+} catch (err) {
+res.status(500).json({ error: 'Server error' });
+}
+});
 
-  if (!mindmap) {
-    return res.status(404).json({
-      success: false,
-      error: 'Mind map not found',
-      message: 'The requested mind map does not exist'
-    });
-  }
 
-  const response: ApiResponse = {
-    success: true,
-    data: mindmap,
-    message: 'Mind map retrieved successfully'
-  };
+// Delete
+router.delete('/:id', async (req, res) => {
+try {
+await MindMap.findByIdAndDelete(req.params.id);
+res.json({ ok: true });
+} catch (err) {
+res.status(500).json({ error: 'Server error' });
+}
+});
 
-  res.json(response);
-}));
-
-// POST /api/mindmaps - Create new mind map
-router.post('/', asyncHandler(async (req: Request, res: Response) => {
-  const { title, description }: CreateMindMapRequest = req.body;
-
-  if (!title || title.trim().length === 0) {
-    return res.status(400).json({
-      success: false,
-      error: 'Title is required',
-      message: 'Please provide a title for the mind map'
-    });
-  }
-
-  const mindmap = new MindMapModel({
-    title: title.trim(),
-    description: description?.trim(),
-    nodes: [],
-    connections: []
-  });
-
-  await mindmap.save();
-
-  const response: ApiResponse = {
-    success: true,
-    data: mindmap,
-    message: 'Mind map created successfully'
-  };
-
-  res.status(201).json(response);
-}));
-
-// PUT /api/mindmaps/:id - Update existing mind map
-router.put('/:id', asyncHandler(async (req: Request, res: Response) => {
-  const { id } = req.params;
-  const updates: UpdateMindMapRequest = req.body;
-
-  if (!id || id.length !== 24) {
-    return res.status(400).json({
-      success: false,
-      error: 'Invalid mind map ID',
-      message: 'Please provide a valid mind map ID'
-    });
-  }
-
-  const mindmap = await MindMapModel.findById(id);
-
-  if (!mindmap) {
-    return res.status(404).json({
-      success: false,
-      error: 'Mind map not found',
-      message: 'The requested mind map does not exist'
-    });
-  }
-
-  // Update fields if provided
-  if (updates.title !== undefined) {
-    mindmap.title = updates.title.trim();
-  }
-  if (updates.description !== undefined) {
-    mindmap.description = updates.description.trim();
-  }
-  if (updates.nodes !== undefined) {
-    mindmap.nodes = updates.nodes;
-  }
-  if (updates.connections !== undefined) {
-    mindmap.connections = updates.connections;
-  }
-
-  mindmap.updatedAt = new Date();
-  await mindmap.save();
-
-  const response: ApiResponse = {
-    success: true,
-    data: mindmap,
-    message: 'Mind map updated successfully'
-  };
-
-  res.json(response);
-}));
-
-// DELETE /api/mindmaps/:id - Delete mind map
-router.delete('/:id', asyncHandler(async (req: Request, res: Response) => {
-  const { id } = req.params;
-
-  if (!id || id.length !== 24) {
-    return res.status(400).json({
-      success: false,
-      error: 'Invalid mind map ID',
-      message: 'Please provide a valid mind map ID'
-    });
-  }
-
-  const mindmap = await MindMapModel.findByIdAndDelete(id);
-
-  if (!mindmap) {
-    return res.status(404).json({
-      success: false,
-      error: 'Mind map not found',
-      message: 'The requested mind map does not exist'
-    });
-  }
-
-  const response: ApiResponse = {
-    success: true,
-    message: 'Mind map deleted successfully'
-  };
-
-  res.json(response);
-}));
 
 export default router;

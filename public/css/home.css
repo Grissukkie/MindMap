@@ -1,0 +1,14 @@
+* { box-sizing: border-box; }
+body { font-family: Arial, Helvetica, sans-serif; margin: 0; }
+header { background: linear-gradient(90deg,#6b46c1,#b832b8); color: white; padding: 14px; }
+main { display: flex; gap: 12px; padding: 12px; }
+.controls { position: fixed; top: 70px; left: 12px; background: rgba(255,255,255,0.95); padding: 10px; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.15); z-index: 10; }
+.controls input { padding: 6px; }
+.canvas { flex: 1; height: calc(100vh - 40px); border: 1px dashed #ddd; margin-left: 220px; position: relative; overflow: auto; }
+.node { position: absolute; min-width: 120px; padding: 8px; background: #fff; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.12); cursor: grab; border: 1px solid #eee; }
+.node:active { cursor: grabbing; }
+.node .text { min-height: 20px; outline: none; }
+.sidebar { width: 200px; position: fixed; left: 12px; top: 200px; background: #fafafa; padding: 8px; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.06); }
+.sidebar ul { list-style: none; padding: 0; margin: 0; }
+.sidebar li { padding: 6px 4px; border-bottom: 1px solid #eee; display:flex; justify-content:space-between; align-items:center }
+.sidebar button { margin-left:6px }

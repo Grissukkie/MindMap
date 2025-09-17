@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MindMap</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen flex flex-col">
+
+  <!-- Header -->
+  <header class="bg-gradient-to-r from-purple-600 to-pink-500 text-white p-4 flex items-center justify-between shadow-lg">
+    <h1 class="text-2xl font-bold">🧠 MindMap</h1>
+    <div class="flex gap-2">
+      <input id="mapName" type="text" value="My mindmap" 
+             class="px-3 py-1 rounded-md text-black border focus:ring-2 focus:ring-pink-400">
+      <button id="addNodeBtn" class="px-4 py-1 bg-white text-purple-600 rounded-lg shadow hover:bg-gray-100">➕ Node</button>
+      <button id="saveMapBtn" class="px-4 py-1 bg-green-500 rounded-lg shadow hover:bg-green-600">💾 Save</button>
+      <button id="clearCanvasBtn" class="px-4 py-1 bg-red-500 rounded-lg shadow hover:bg-red-600">🗑 Clear</button>
+    </div>
+  </header>
+
+  <!-- Main Layout -->
+  <div class="flex flex-1 overflow-hidden">
+    
+    <!-- Sidebar -->
+    <aside class="w-64 bg-white shadow-lg p-4 overflow-y-auto border-r">
+      <h2 class="text-lg font-semibold mb-4">📂 Saved Maps</h2>
+      <ul id="savedMaps" class="space-y-2">
+        <!-- aquí se listan los mapas desde backend -->
+      </ul>
+    </aside>
+
+    <!-- Canvas -->
+    <main class="flex-1 bg-gray-50 relative">
+      <canvas id="mindmapCanvas" class="w-full h-full"></canvas>
+    </main>
+  </div>
+
+  <script src="js/home.js"></script>
+</body>
+</html>
