@@ -72,15 +72,36 @@ document.getElementById("saveMapBtn").addEventListener("click", async () => {
     alert("Please enter a map name");
     return;
   }
-  const res = await fetch("/api/mindmaps", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ name, nodes, connections })
-  });
-  const data = await res.json();
-  console.log("Saved:", data);
-  loadSavedMaps();
+
+  // Save PNG
+  const link = document.createElement("a");
+  link.download = name + ".png";
+  link.href = canvas.toDataURL("image/png");
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+
+  // Save map data in backend
+  try {
+    const res = await fetch("/api/mindmaps", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name, nodes, connections })
+    });
+
+    if (!res.ok) {
+      throw new Error("Failed to save map");
+    }
+
+    const data = await res.json();
+    console.log("Saved:", data);
+    loadSavedMaps();
+  } catch (err) {
+    console.error(err);
+    alert("Error saving the map");
+  }
 });
+
 
 // Eventos canvas
 canvas.addEventListener("mousedown", (e) => {

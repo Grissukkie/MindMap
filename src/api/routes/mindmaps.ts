@@ -8,8 +8,8 @@ const router = Router();
 // Create new mindmap
 router.post('/', async (req, res) => {
 try {
-const { title, nodes } = req.body;
-const saved = await MindMap.create({ title, nodes });
+const { name, nodes, connections } = req.body;
+const saved = await MindMap.create({ name, nodes, connections });
 res.status(201).json(saved);
 } catch (err) {
 console.error(err);
