@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import MindMap from '../models/MindMap';
+import MindMap from '../models/MindMap.js';
 
 
 const router = Router();
