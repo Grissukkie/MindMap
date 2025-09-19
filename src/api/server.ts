@@ -2,8 +2,8 @@ import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import path from 'path';
-import connectDB from './database';
-import mindmapRoutes from './routes/mindmaps';
+import connectDB from './database.js';
+import mindmapRoutes from './routes/mindmaps.js';
 
 dotenv.config();
 

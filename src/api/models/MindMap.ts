@@ -4,6 +4,7 @@ export interface IMindmap extends Document {
   name: string;
   nodes: { id: string; x: number; y: number; text: string }[];
   createdAt: Date;
+  connections: { from: string; to: string }[];
 }
 
 const MindmapSchema = new Schema<IMindmap>(
