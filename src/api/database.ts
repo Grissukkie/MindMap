@@ -12,6 +12,7 @@ const connectDB = async (): Promise<void> => {
     await mongoose.connect(mongoUri, {
       // Remove deprecated options for newer mongoose versions
     });
+    
 
     console.log('✅ MongoDB Atlas connected successfully');
   } catch (error) {
